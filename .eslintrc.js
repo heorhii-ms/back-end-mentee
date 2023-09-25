@@ -5,10 +5,14 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin'],
+  plugins: ['@typescript-eslint', '@darraghor/nestjs-typed'],
   extends: [
+    'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:@darraghor/nestjs-typed/recommended',
+    // TODO remove after Swagger setup
+    'plugin:@darraghor/nestjs-typed/no-swagger',
   ],
   root: true,
   env: {
