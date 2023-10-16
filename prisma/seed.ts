@@ -1,7 +1,7 @@
 import {PrismaClient} from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
-import {AUTH_CONSTANTS} from 'src/constants/auth-constants';
+import {AUTH_CONSTANTS} from '../src/constants/auth-constants';
 
 const prisma = new PrismaClient();
 
@@ -16,8 +16,8 @@ async function main() {
     update: {},
     create: {
       email: 'test1@test.test',
-      first_name: 'Test1',
-      last_name: 'Testson',
+      firstName: 'Test1',
+      lastName: 'Testson',
       password: password,
     },
   });
@@ -27,8 +27,8 @@ async function main() {
     update: {},
     create: {
       email: 'test2@test.test',
-      first_name: 'Test2',
-      last_name: 'Testson',
+      firstName: 'Test2',
+      lastName: 'Testson',
       password: password,
     },
   });
