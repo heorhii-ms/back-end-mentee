@@ -16,9 +16,9 @@ export class UserService {
       AUTH_CONSTANTS.ROUNDS_OF_GASHING,
     );
 
-    createUserDto.password = hashedPassword;
+    const password = hashedPassword;
 
-    return this.prisma.user.create({data: createUserDto});
+    return this.prisma.user.create({data: {...createUserDto, password}});
   }
 
   public findAll(): Promise<User[]> {
@@ -30,18 +30,19 @@ export class UserService {
   }
 
   public async update(id: number, updateUserDto: UpdateUserDto) {
-    if (updateUserDto.password) {
+    let newPassword = {};
+
+    if (updateUserDto?.password) {
       const hashedPassword = await bcrypt.hash(
         updateUserDto.password,
         AUTH_CONSTANTS.ROUNDS_OF_GASHING,
       );
-
-      updateUserDto.password = hashedPassword;
+      newPassword = {password: hashedPassword};
     }
 
     return this.prisma.user.update({
       where: {id},
-      data: updateUserDto,
+      data: {...updateUserDto, ...newPassword},
     });
   }
 
