@@ -10,6 +10,7 @@ import {UpdateUserDto} from './dto/update-user.dto';
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
+
   public async create(createUserDto: CreateUserDto) {
     const hashedPassword = await bcrypt.hash(
       createUserDto.password,
